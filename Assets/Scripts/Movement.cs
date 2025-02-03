@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
     public int mouseSensitivity = 600;
@@ -67,6 +68,12 @@ public class Movement : MonoBehaviour {
             // lastJump = 0f;
             // rb.velocity += new Vector3(0, 40, 0);
             yVelocity = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+        }
+    }
+
+    public void OnReset(InputAction.CallbackContext context) {
+        if(context.phase == InputActionPhase.Performed) {
+            SceneManager.LoadScene("Main");
         }
     }
 
